@@ -1,21 +1,28 @@
 {
-    "name": "@codeplant/utf7",
-    "version": "2.0.0",
-    "description": "Converts text to and from UTF-7 (RFC 2152 and IMAP)",
-    "author": "Konstantin Käfer <kkaefer@gmail.com>",
-    "licenses": [
-        {
-            "type": "BSD"
-        }
-    ],
-    "main": "./utf7",
-    "dependencies": {
-        "semver": "^7.5.4"
-    },
-    "devDependencies": {
-        "tape": "^5.7.2"
-    },
-    "scripts": {
-        "test": "tape test/*.js"
+  "name": "@codeplant/utf7",
+  "version": "2.0.0",
+  "description": "Converts text to and from UTF-7 (RFC 2152 and IMAP)",
+  "author": "Konstantin Käfer <kkaefer@gmail.com>",
+  "licenses": [
+    {
+      "type": "BSD"
     }
+  ],
+  "main": "./utf7",
+  "dependencies": {
+    "semver": "^7.5.4"
+  },
+  "devDependencies": {
+    "tape": "^5.7.2"
+  },
+  "scripts": {
+    "test": "tape test/*.js",
+    "postpublish": "PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git tag v$PACKAGE_VERSION && git push --tags"
+  },
+  "volta": {
+    "node": "18.13.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }
